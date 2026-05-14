@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hotel Priyanka – Menu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NOTIFICATION BANNER -->
+<div id="orderNotif"></div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-top">नावाला आणि चवीला · फक्त एकच नाव</div>
+
+  <div class="logo-wrap">
+    <div class="logo-circle">
+      <img src="assets/logo.png" alt="Hotel Priyanka" onerror="this.parentElement.innerHTML='🍽️'">
+    </div>
+    <div class="hotel-name-wrap">
+      <div class="hotel-sub">Welcome to</div>
+      <div class="hotel-name">Hotel <span>Priyanka</span></div>
+      <div class="hotel-tagline">अँड फॅमिली रेस्टॉरंट · Permit Room</div>
+    </div>
+  </div>
+
+  <div class="contact-strip">
+    <div class="contact-card">
+      <div class="owner">Ravindra (John) Mhaske</div>
+      <div class="phone">📞 9209693603 / 832 949 9089</div>
+    </div>
+    <div class="contact-card">
+      <div class="owner">Mahesh Mhaske</div>
+      <div class="phone">📞 9822808883 / 9370996389</div>
+    </div>
+  </div>
+
+  <div class="address-bar">
+    📍 Mahad-Bhor, Pune Highway, Mu. Pimpaldari, Post Bhave
+  </div>
+
+  <div class="tags">
+    <span class="tag veg">Veg</span>
+    <span class="tag nonveg">Non-Veg</span>
+    <span class="tag permit">Permit Room</span>
+    <span class="tag veg">Gavran Special</span>
+  </div>
+</header>
+
+<div class="table-banner">📍 Scan & Order from your table</div>
+
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="filterSection('all',this)">All</button>
+  <button class="filter-btn" onclick="filterSection('snacks',this)">Snacks Veg</button>
+  <button class="filter-btn" onclick="filterSection('nonveg-starters',this)">Non-Veg Starters</button>
+  <button class="filter-btn" onclick="filterSection('kabab',this)">Kabab</button>
+  <button class="filter-btn" onclick="filterSection('main-veg',this)">Main Course Veg</button>
+  <button class="filter-btn" onclick="filterSection('main-chicken',this)">Chicken</button>
+  <button class="filter-btn" onclick="filterSection('mutton',this)">Mutton</button>
+  <button class="filter-btn" onclick="filterSection('roti',this)">Roti</button>
+  <button class="filter-btn" onclick="filterSection('chinese',this)">Chinese</button>
+  <button class="filter-btn" onclick="filterSection('rice',this)">Rice & Biryani</button>
+  <button class="filter-btn" onclick="filterSection('thali',this)">Thali</button>
+  <button class="filter-btn" onclick="filterSection('fish',this)">Fish</button>
+</div>
+
+<div class="menu-section" data-cat="snacks"><div class="section-header"><h2>Snacks Veg</h2><span class="section-badge badge-veg">VEG</span><div class="section-line"></div></div><div id="items-snacks"></div></div>
+<div class="menu-section" data-cat="nonveg-starters"><div class="section-header"><h2>Non-Veg Starters</h2><span class="section-badge badge-nonveg">NON-VEG</span><div class="section-line"></div></div><div id="items-nonveg-starters"></div></div>
+<div class="menu-section" data-cat="kabab"><div class="section-header"><h2>Kabab</h2><span class="section-badge badge-both">VEG & NON-VEG</span><div class="section-line"></div></div><div id="items-kabab"></div></div>
+<div class="menu-section" data-cat="main-veg"><div class="section-header"><h2>Indian Main Course (Veg)</h2><span class="section-badge badge-veg">VEG</span><div class="section-line"></div></div><div id="items-main-veg"></div></div>
+<div class="menu-section" data-cat="main-chicken"><div class="section-header"><h2>Non-Veg Main Course – Chicken</h2><span class="section-badge badge-nonveg">NON-VEG</span><div class="section-line"></div></div><div id="items-main-chicken"></div></div>
+<div class="menu-section" data-cat="mutton"><div class="section-header"><h2>Mutton Special</h2><span class="section-badge badge-nonveg">NON-VEG</span><div class="section-line"></div></div><div id="items-mutton"></div></div>
+<div class="menu-section" data-cat="roti"><div class="section-header"><h2>Roti / Bread</h2><span class="section-badge badge-veg">VEG</span><div class="section-line"></div></div><div id="items-roti"></div></div>
+<div class="menu-section" data-cat="chinese"><div class="section-header"><h2>Chinese</h2><span class="section-badge badge-both">VEG & NON-VEG</span><div class="section-line"></div></div><div id="items-chinese"></div></div>
+<div class="menu-section" data-cat="rice"><div class="section-header"><h2>Rice, Pulav & Biryani</h2><span class="section-badge badge-both">VEG & NON-VEG</span><div class="section-line"></div></div><div id="items-rice"></div></div>
+<div class="menu-section" data-cat="thali"><div class="section-header"><h2>Thali</h2><span class="section-badge badge-both">VEG & NON-VEG</span><div class="section-line"></div></div><div id="items-thali"></div></div>
+<div class="menu-section" data-cat="fish"><div class="section-header"><h2>Fish</h2><span class="section-badge badge-nonveg">NON-VEG</span><div class="section-line"></div></div><div id="items-fish"></div></div>
+
+<div style="height:100px"></div>
+
+<button id="cartFloat" onclick="openCart()">🛒 <span id="cartCount">0 items</span> &nbsp;·&nbsp; View Order</button>
+
+<div id="cartModal">
+  <div style="flex:1" onclick="closeCart()"></div>
+  <div class="cart-sheet">
+    <div class="cart-title">
+      Your Order
+      <button class="cart-close" onclick="closeCart()">✕</button>
+    </div>
+    <div id="cartItems"></div>
+    <div class="cart-total"><span>Total</span><span id="cartTotal">₹0</span></div>
+    <div class="table-input-wrap">
+      <label>Table Number</label>
+      <input type="text" id="tableNum" placeholder="e.g. Table 5" />
+    </div>
+    <button class="place-order-btn" onclick="placeOrder()">Place Order & Pay 💳</button>
+    <div class="success-msg" id="successMsg">
+      <div class="check">✅</div>
+      <h3>Order Placed!</h3>
+      <p>Your order has been sent to the kitchen.<br>We'll notify you when it's ready!</p>
+    </div>
+  </div>
+</div>
+
+<script>
+const courseMap = {
+  snacks:'🥗 Starter','nonveg-starters':'🥗 Starter',kabab:'🥗 Starter',
+  'main-veg':'🍛 Main Course','main-chicken':'🍛 Main Course',mutton:'🍛 Main Course',
+  roti:'🍚 Rice & Bread',chinese:'🍛 Main Course',rice:'🍚 Rice & Bread',
+  thali:'🍛 Main Course',fish:'🍛 Main Course'
+};
+
+const menuData = {
+  snacks:[
+    {name:"Finger Chips",price:100,type:"veg"},{name:"Kaju Fry",price:200,type:"veg"},
+    {name:"Paneer Pakoda",price:240,type:"veg"},{name:"Chana Oil Fry",price:140,type:"veg"},
+    {name:"Chana Garlic",price:200,type:"veg"},{name:"Garlic Fry",price:150,type:"veg"},
+    {name:"Chana Koliwada",price:230,type:"veg"},{name:"Veg Papad Roll",price:160,type:"veg"},
+    {name:"Veg Pakoda",price:200,type:"veg"},{name:"Veg Parotha",price:170,type:"veg"},
+    {name:"Roasted Papad",price:20,type:"veg"},{name:"Masala Papad",price:40,type:"veg"},
+    {name:"Schezwan Chutney",price:20,type:"veg"},{name:"Mugdal Special",price:40,type:"veg"},
+    {name:"Chana Koliwada Garlic",price:250,type:"veg"},{name:"Fry Papad",price:30,type:"veg"},
+  ],
+  "nonveg-starters":[
+    {name:"Omlet",price:50,type:"nonveg"},{name:"Egg Burji",price:60,type:"nonveg"},
+    {name:"Egg Pakoda",price:120,type:"nonveg"},{name:"Egg Boil",price:30,type:"nonveg"},
+    {name:"Egg Oil Dry",price:80,type:"nonveg"},{name:"Chicken Pakoda",price:200,type:"nonveg"},
+    {name:"Chicken Papad Roll",price:200,type:"nonveg"},{name:"Chicken Oil Dry",price:150,type:"nonveg"},
+    {name:"Liver Petha Oil Fry",price:160,type:"nonveg"},{name:"Liver Petha Masala",price:220,type:"nonveg"},
+    {name:"Vajri Fry",price:300,type:"nonveg"},
+  ],
+  kabab:[
+    {name:"Pahadi Kabab",price:310,type:"nonveg"},{name:"Chicken Kalimiri Kabab",price:350,type:"nonveg"},
+    {name:"Rosali Kabab",price:380,type:"nonveg"},{name:"Chicken Ratali Kabab",price:340,type:"nonveg"},
+    {name:"Chicken Banjara Kabab",price:320,type:"nonveg"},{name:"Chicken Tangdi Kabab",price:270,type:"nonveg"},
+    {name:"Chicken Lasomi Kabab",price:330,type:"nonveg"},{name:"Chicken Malai Kabab",price:400,type:"nonveg"},
+    {name:"Chicken Seekh Kabab",price:330,type:"nonveg"},{name:"Chicken Tandoori (Half)",price:240,type:"nonveg"},
+    {name:"Chicken Tandoori (Full)",price:450,type:"nonveg"},{name:"Chicken Tikka",price:300,type:"nonveg"},
+    {name:"Chicken Tandoori Lollipoe (Half)",price:220,type:"nonveg"},{name:"Chicken Tandoori Lollipoe (Full)",price:400,type:"nonveg"},
+    {name:"Harabhra Kabab",price:250,type:"nonveg"},{name:"Paneer Tikka",price:300,type:"veg"},
+    {name:"Chicken Reshmi Kabab",price:380,type:"nonveg"},{name:"Dilkhush Kabab",price:450,type:"veg"},
+    {name:"Chicken Dudhiya Kabab",price:320,type:"nonveg"},{name:"Chicken Sizzler Kabab (Half)",price:350,type:"nonveg"},
+    {name:"Chicken Sizzler Kabab (Full)",price:700,type:"nonveg"},{name:"Chicken Angara Kabab",price:400,type:"nonveg"},
+    {name:"Chicken Garlic Kabab",price:250,type:"nonveg"},{name:"Chicken Cheese Kabab",price:250,type:"nonveg"},
+  ],
+  "main-veg":[
+    {name:"Priyanka Spl Dish",price:800,type:"veg"},{name:"Veg Maratha",price:260,type:"veg"},
+    {name:"Veg Handi (Half)",price:390,type:"veg"},{name:"Veg Handi (Full)",price:520,type:"veg"},
+    {name:"Veg Handi Kolhapuri (Half)",price:420,type:"veg"},{name:"Veg Handi Kolhapuri (Full)",price:540,type:"veg"},
+    {name:"Veg Makhanwala",price:250,type:"veg"},{name:"Veg Maharaja",price:280,type:"veg"},
+    {name:"Veg Kolhapuri",price:250,type:"veg"},{name:"Veg Kadhai",price:290,type:"veg"},
+    {name:"Veg Kadhai Kolhapuri",price:310,type:"veg"},{name:"Mix Veg",price:250,type:"veg"},
+    {name:"Paneer Kadhai",price:340,type:"veg"},{name:"Paneer Handi (Half)",price:400,type:"veg"},
+    {name:"Paneer Handi (Full)",price:650,type:"veg"},{name:"Paneer Mutter Masala",price:300,type:"veg"},
+    {name:"Paneer Burji",price:250,type:"veg"},{name:"Paneer Makhanwala",price:290,type:"veg"},
+    {name:"Paneer Tikka Masala",price:310,type:"veg"},{name:"Paneer Mashroom Masala",price:310,type:"veg"},
+    {name:"Kaju Paneer Masala",price:300,type:"veg"},{name:"Kaju Mutter Masala",price:290,type:"veg"},
+    {name:"Kaju Mutter Paneer",price:320,type:"veg"},{name:"Kaju Masala",price:300,type:"veg"},
+    {name:"Mashroom Mutter Masala",price:260,type:"veg"},{name:"Mashroom Masala",price:250,type:"veg"},
+    {name:"Paneer Masala",price:280,type:"veg"},{name:"Chana Masala",price:200,type:"veg"},
+    {name:"Aloo Mutter",price:200,type:"veg"},{name:"Green Peas Masala",price:200,type:"veg"},
+    {name:"Dal Fry",price:110,type:"veg"},{name:"Dal Tadka",price:130,type:"veg"},
+    {name:"Dal Kolhapuri",price:140,type:"veg"},{name:"Grevy",price:100,type:"veg"},
+    {name:"Veg Toofani",price:450,type:"veg"},{name:"Veg Angara",price:380,type:"veg"},
+  ],
+  "main-chicken":[
+    {name:"Priyanka Special Dish",price:900,type:"nonveg"},{name:"Chicken Mumtaj Masala",price:400,type:"nonveg"},
+    {name:"Chicken Lazeez",price:300,type:"nonveg"},{name:"Chicken Handi Malvani (Half)",price:450,type:"nonveg"},
+    {name:"Chicken Handi Malvani (Full)",price:700,type:"nonveg"},{name:"Chicken Pasanda",price:350,type:"nonveg"},
+    {name:"Chicken Patiyala",price:400,type:"nonveg"},{name:"Chicken Handi (Half)",price:380,type:"nonveg"},
+    {name:"Chicken Handi (Full)",price:550,type:"nonveg"},{name:"Chicken Maratha",price:280,type:"nonveg"},
+    {name:"Chicken Kadhai",price:260,type:"nonveg"},{name:"Chicken Kadhai Kolhapuri",price:330,type:"nonveg"},
+    {name:"Chicken Rampuri",price:450,type:"nonveg"},{name:"Butter Chicken (Half)",price:350,type:"nonveg"},
+    {name:"Butter Chicken (Full)",price:580,type:"nonveg"},{name:"Chicken Kolhapuri",price:250,type:"nonveg"},
+    {name:"Chicken Masala",price:220,type:"nonveg"},{name:"Chicken Moghlai",price:280,type:"nonveg"},
+    {name:"Chicken Tawa",price:420,type:"nonveg"},{name:"Chicken Tikka Masala",price:400,type:"nonveg"},
+    {name:"Chicken Lapeta (Half)",price:450,type:"nonveg"},{name:"Chicken Lapeta (Full)",price:700,type:"nonveg"},
+    {name:"Chicken Sukha",price:350,type:"nonveg"},{name:"Egg Masala",price:150,type:"nonveg"},
+    {name:"Egg Kari",price:150,type:"nonveg"},{name:"Chicken Toofani",price:450,type:"nonveg"},
+    {name:"Chicken Angara",price:499,type:"nonveg"},{name:"Chicken Hyderabadi",price:380,type:"nonveg"},
+    {name:"Liver Feta Koliwada",price:180,type:"nonveg"},{name:"Liver Feta Tandoori Chicken",price:220,type:"nonveg"},
+    {name:"Murgh Musallam (Half)",price:600,type:"nonveg"},{name:"Murgh Musallam (Full)",price:900,type:"nonveg"},
+  ],
+  mutton:[
+    {name:"Priyanka Special Mutton",price:1050,type:"nonveg"},{name:"Mutton Handi (Half)",price:600,type:"nonveg"},
+    {name:"Mutton Handi (Full)",price:950,type:"nonveg"},{name:"Mutton Handi Kolhapuri (Half)",price:600,type:"nonveg"},
+    {name:"Mutton Handi Kolhapuri (Full)",price:950,type:"nonveg"},{name:"Mutton Lapeta (Half)",price:600,type:"nonveg"},
+    {name:"Mutton Lapeta (Full)",price:1000,type:"nonveg"},{name:"Mutton Maratha",price:380,type:"nonveg"},
+    {name:"Mutton Malvani (Half)",price:700,type:"nonveg"},{name:"Mutton Malvani (Full)",price:999,type:"nonveg"},
+    {name:"Mutton Suka",price:500,type:"nonveg"},{name:"Mutton Kadhai",price:410,type:"nonveg"},
+    {name:"Mutton Kadhai Kolhapuri",price:420,type:"nonveg"},{name:"Mutton Moglai",price:380,type:"nonveg"},
+    {name:"Mutton Kolhapuri",price:500,type:"nonveg"},{name:"Mutton Masala",price:330,type:"nonveg"},
+  ],
+  roti:[
+    {name:"Roti",price:20,type:"veg"},{name:"Butter Roti",price:25,type:"veg"},
+    {name:"Paratha",price:50,type:"veg"},{name:"Aloo Paratha",price:100,type:"veg"},
+    {name:"Butter Aloo Paratha",price:110,type:"veg"},{name:"Butter Paratha",price:60,type:"veg"},
+    {name:"Garlic Paratha",price:90,type:"veg"},{name:"Butter Garlic Paratha",price:100,type:"veg"},
+    {name:"Kulcha",price:60,type:"veg"},{name:"Butter Kulcha",price:70,type:"veg"},
+    {name:"Nan",price:40,type:"veg"},{name:"Butter Nan",price:50,type:"veg"},
+    {name:"Garlic Nan",price:60,type:"veg"},{name:"Butter Garlic Nan",price:70,type:"veg"},
+  ],
+  chinese:[
+    {name:"Chicken Crispy",price:300,type:"nonveg"},{name:"Chicken Chilli",price:250,type:"nonveg"},
+    {name:"Chicken 65",price:270,type:"nonveg"},{name:"Chicken Lollipop (Half)",price:140,type:"nonveg"},
+    {name:"Chicken Lollipop (Full)",price:200,type:"nonveg"},{name:"Chicken Lollipop Masala (Half)",price:170,type:"nonveg"},
+    {name:"Chicken Lollipop Masala (Full)",price:250,type:"nonveg"},{name:"Chicken Schezwan Fried Rice",price:200,type:"nonveg"},
+    {name:"Chicken Fried Rice (Half)",price:130,type:"nonveg"},{name:"Chicken Fried Rice (Full)",price:180,type:"nonveg"},
+    {name:"Egg Fried Rice (Half)",price:100,type:"nonveg"},{name:"Egg Fried Rice (Full)",price:150,type:"nonveg"},
+    {name:"Chicken Triple Rice",price:240,type:"nonveg"},{name:"Paneer Chilli (Dry)",price:240,type:"veg"},
+    {name:"Paneer Chilli (Gravy)",price:260,type:"veg"},{name:"Veg Crispy",price:200,type:"veg"},
+    {name:"Veg Manchurian (Dry/Gravy)",price:200,type:"veg"},{name:"Paneer 65",price:250,type:"veg"},
+    {name:"Veg Lollipop",price:180,type:"veg"},{name:"Veg Fried Rice (Half)",price:110,type:"veg"},
+    {name:"Veg Fried Rice (Full)",price:150,type:"veg"},{name:"Veg Shezwan Rice (Half)",price:120,type:"veg"},
+    {name:"Veg Shezwan Rice (Full)",price:160,type:"veg"},{name:"Veg Triple Rice",price:250,type:"veg"},
+    {name:"Tomato Soup",price:80,type:"veg"},{name:"Veg Manchow Soup",price:100,type:"veg"},
+    {name:"Veg Mashroom Soup",price:120,type:"veg"},{name:"Chicken Manchow Soup",price:120,type:"nonveg"},
+    {name:"Priyanka Hotel Special Fried Rice (Veg)",price:210,type:"veg"},
+    {name:"Priyanka Hotel Special Fried Rice (Non-Veg)",price:390,type:"nonveg"},
+  ],
+  rice:[
+    {name:"Mashroom Fried Rice",price:250,type:"veg"},{name:"Dal Khichadi",price:180,type:"veg"},
+    {name:"Steam Rice (Half)",price:80,type:"veg"},{name:"Steam Rice (Full)",price:120,type:"veg"},
+    {name:"Jeera Rice (Half)",price:100,type:"veg"},{name:"Jeera Rice (Full)",price:140,type:"veg"},
+    {name:"Veg Pulav",price:250,type:"veg"},{name:"Paneer Pulav",price:250,type:"veg"},
+    {name:"Green Peas Pulav",price:240,type:"veg"},{name:"Paneer Tikka Biryani",price:280,type:"veg"},
+    {name:"Veg Biryani (Half)",price:160,type:"veg"},{name:"Veg Biryani (Full)",price:220,type:"veg"},
+    {name:"Mutton Biryani (Half)",price:180,type:"nonveg"},{name:"Mutton Biryani (Full)",price:320,type:"nonveg"},
+    {name:"Chicken Biryani (Half)",price:120,type:"nonveg"},{name:"Chicken Biryani (Full)",price:240,type:"nonveg"},
+    {name:"Chicken Tikka Biryani (Half)",price:200,type:"nonveg"},{name:"Chicken Tikka Biryani (Full)",price:350,type:"nonveg"},
+    {name:"Chicken Hyderabadi Biryani (Half)",price:190,type:"nonveg"},{name:"Chicken Hyderabadi Biryani (Full)",price:340,type:"nonveg"},
+    {name:"Chicken Ran",price:800,type:"nonveg"},
+  ],
+  thali:[
+    {name:"Veg Rice Plate",price:180,type:"veg"},{name:"Special Veg Rice Plate",price:250,type:"veg"},
+    {name:"Mutton Thali",price:350,type:"nonveg"},{name:"Chicken Thali",price:250,type:"nonveg"},
+    {name:"Anda Masala Thali",price:180,type:"nonveg"},{name:"Anda Kari Thali",price:160,type:"nonveg"},
+  ],
+  fish:[
+    {name:"Pomfret Fry",price:0,type:"nonveg",aps:true},{name:"Pomfret Masala",price:0,type:"nonveg",aps:true},
+    {name:"Pomfret Tawa Fry",price:0,type:"nonveg",aps:true},{name:"Prawns Koliwada",price:0,type:"nonveg",aps:true},
+    {name:"Prawns Masala",price:0,type:"nonveg",aps:true},{name:"Prawns Fry",price:0,type:"nonveg",aps:true},
+    {name:"Surmai Fry",price:0,type:"nonveg",aps:true},{name:"Surmai Tawa Fry",price:0,type:"nonveg",aps:true},
+    {name:"Surmai Masala",price:0,type:"nonveg",aps:true},{name:"Surmai Kurry",price:0,type:"nonveg",aps:true},
+    {name:"Bangda Fry",price:0,type:"nonveg",aps:true},{name:"Bangda Masala",price:0,type:"nonveg",aps:true},
+    {name:"Bangda Tawa Fry",price:0,type:"nonveg",aps:true},{name:"Mandeli Fry",price:0,type:"nonveg",aps:true},
+    {name:"Mandeli Tawa Fry",price:0,type:"nonveg",aps:true},{name:"Bombil Fry",price:0,type:"nonveg",aps:true},
+    {name:"Bombil Tawa Fry",price:0,type:"nonveg",aps:true},{name:"Bombil Masala",price:0,type:"nonveg",aps:true},
+  ],
+};
+
+let cart = {};
+let currentOrderId = null;
+let notifInterval = null;
+
+function renderMenus() {
+  Object.keys(menuData).forEach(cat => {
+    const container = document.getElementById('items-' + cat);
+    if (!container) return;
+    menuData[cat].forEach((item, i) => {
+      const id = cat + '_' + i;
+      const priceStr = item.aps ? '<span class="aps-note">Price as per season</span>' : '₹' + item.price;
+      container.innerHTML += `
+        <div class="item-card">
+          <div class="dot ${item.type}"></div>
+          <div class="item-info">
+            <div class="item-name">${item.name}</div>
+            <div class="item-price">${priceStr}</div>
+          </div>
+          ${!item.aps ? `<button class="add-btn" id="btn_${id}" onclick="addToCart('${id}','${item.name}',${item.price},'${item.type}','${cat}')">Add</button>` : ''}
+        </div>`;
+    });
+  });
+}
+
+function addToCart(id, name, price, type, cat) {
+  if (cart[id]) { cart[id].qty++; }
+  else { cart[id] = { name, price, type, qty: 1, course: courseMap[cat] || '🍛 Main Course' }; }
+  const btn = document.getElementById('btn_' + id);
+  if (btn) { btn.textContent = 'Added ✓'; btn.classList.add('added'); }
+  updateCartBar();
+}
+
+function updateCartBar() {
+  const count = Object.values(cart).reduce((s, i) => s + i.qty, 0);
+  document.getElementById('cartCount').textContent = count + (count === 1 ? ' item' : ' items');
+  document.getElementById('cartFloat').style.display = count > 0 ? 'block' : 'none';
+}
+
+function openCart() {
+  renderCartItems();
+  document.getElementById('cartModal').style.display = 'flex';
+}
+
+function closeCart() {
+  document.getElementById('cartModal').style.display = 'none';
+}
+
+function renderCartItems() {
+  const container = document.getElementById('cartItems');
+  container.innerHTML = '';
+  let total = 0;
+  Object.keys(cart).forEach(id => {
+    const item = cart[id];
+    total += item.price * item.qty;
+    container.innerHTML += `
+      <div class="cart-item">
+        <span class="cart-item-name">${item.name}</span>
+        <div class="qty-ctrl">
+          <button class="qty-btn" onclick="changeQty('${id}',-1)">−</button>
+          <span class="qty-num">${item.qty}</span>
+          <button class="qty-btn" onclick="changeQty('${id}',1)">+</button>
+        </div>
+        <span class="cart-item-price">₹${item.price * item.qty}</span>
+      </div>`;
+  });
+  document.getElementById('cartTotal').textContent = '₹' + total;
+}
+
+function changeQty(id, delta) {
+  cart[id].qty += delta;
+  if (cart[id].qty <= 0) {
+    delete cart[id];
+    const btn = document.getElementById('btn_' + id);
+    if (btn) { btn.textContent = 'Add'; btn.classList.remove('added'); }
+  }
+  updateCartBar();
+  renderCartItems();
+}
+
+function placeOrder() {
+  const table = document.getElementById('tableNum').value.trim();
+  if (!table) { alert('Please enter your table number.'); return; }
+  if (Object.keys(cart).length === 0) { alert('Your cart is empty.'); return; }
+
+  let itemsList = '';
+  let total = 0;
+  let courseGroups = {};
+
+  Object.values(cart).forEach(item => {
+    itemsList += item.name + ' x' + item.qty + ', ';
+    total += item.price * item.qty;
+    const course = item.course || '🍛 Main Course';
+    if (!courseGroups[course]) courseGroups[course] = [];
+    courseGroups[course].push(item.name + ' x' + item.qty);
+  });
+
+  // First save order to DB
+  const formData = new FormData();
+  formData.append('table', table);
+  formData.append('items', itemsList);
+  formData.append('total', total);
+  formData.append('course', JSON.stringify(courseGroups));
+
+  fetch('//priyankahotel.wuaze.com/order.php', {
+    method: 'POST',
+    body: formData
+  })
+  .then(res => res.text())
+  .then(response => {
+    if (response.includes('success')) {
+      const match = response.match(/id:(\d+)/);
+      if (match) {
+        currentOrderId = match[1];
+        startStatusCheck();
+      }
+
+      // Open Razorpay
+      const options = {
+        key: 'rzp_test_SndgFRvgSlWQJP',
+        amount: total * 100, // in paise
+        currency: 'INR',
+        name: 'Hotel Priyanka',
+        description: 'Table ' + table + ' Order',
+        image: 'assets/logo.png',
+        handler: function(response) {
+          // Payment successful
+          const payData = new FormData();
+          payData.append('razorpay_payment_id', response.razorpay_payment_id);
+          payData.append('order_id', currentOrderId);
+          payData.append('razorpay_signature', response.razorpay_signature || '');
+
+          fetch('//priyankahotel.wuaze.com/payment.php', {
+            method: 'POST',
+            body: payData
+          });
+
+          // Show success
+          document.getElementById('successMsg').style.display = 'block';
+          document.querySelector('.place-order-btn').style.display = 'none';
+          document.getElementById('cartItems').style.display = 'none';
+          document.querySelector('.cart-total').style.display = 'none';
+          document.querySelector('.table-input-wrap').style.display = 'none';
+          cart = {};
+          updateCartBar();
+          setTimeout(() => { closeCart(); }, 2000);
+        },
+        prefill: {
+          name: 'Guest',
+        },
+        theme: {
+          color: '#c9a84c'
+        }
+      };
+
+      const rzp = new Razorpay(options);
+      rzp.open();
+
+    } else {
+      alert('Something went wrong. Please try again.');
+    }
+  })
+  .catch(() => { alert('Network error. Please check your connection.'); });
+}
+
+function startStatusCheck() {
+  if (notifInterval) clearInterval(notifInterval);
+  notifInterval = setInterval(checkOrderStatus, 5000);
+}
+
+let lastNotifiedStatus = '';
+
+function checkOrderStatus() {
+  if (!currentOrderId) return;
+  fetch('//priyankahotel.wuaze.com/check_status.php?id=' + currentOrderId)
+    .then(res => res.json())
+    .then(data => {
+      if (data.course_status && data.course_status !== lastNotifiedStatus) {
+        lastNotifiedStatus = data.course_status;
+        showNotification(data.course_status);
+      }
+      if (data.status === 'done') {
+        clearInterval(notifInterval);
+        showNotification('🎉 All your orders are ready! Enjoy your meal!');
+      }
+    })
+    .catch(() => {});
+}
+
+function showNotification(message) {
+  const notif = document.getElementById('orderNotif');
+  notif.textContent = message;
+  notif.style.display = 'block';
+  setTimeout(() => { notif.style.display = 'none'; }, 6000);
+}
+
+function filterSection(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.menu-section').forEach(s => {
+    if (cat === 'all' || s.dataset.cat === cat) s.classList.remove('hidden');
+    else s.classList.add('hidden');
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+renderMenus();
+</script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</body>
+</html>
