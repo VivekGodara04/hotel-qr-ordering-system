@@ -378,7 +378,7 @@ key: 'YOUR\_RAZORPAY\_KEY\_ID'
 
 
 
-\*\*Vedant\*\* — Built from scratch as a real-world project
+\*\*Vedant & Vivek\*\* — Built from scratch as a real-world project
 
 
 
